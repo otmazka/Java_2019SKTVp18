@@ -18,7 +18,7 @@ import java.util.Scanner;
  */
 public class HistoryProvider {
     Scanner scanner = new Scanner(System.in);
-    public History createHistory(List<Book>listBooks,List<Reader>listReaders){
+    public History createHistory(List<Book>listBooks,List<Reader>listReaders){// dlja rabotq nuzen listBooks i listReaders
         
         History history = new History();
         System.out.println("Список книг: ");
@@ -31,7 +31,7 @@ public class HistoryProvider {
             );
         }
         System.out.print("Выберите номер выдаваемой книги:"); 
-        int takeBookNum = scanner.nextInt();
+        int takeBookNum = scanner.nextInt();//s4itat nomer knigi v peremennuju takeBookNum
         Book book = listBooks.get(takeBookNum-1);
         System.out.println("Список читателей: ");
         int i=0;
@@ -49,7 +49,7 @@ public class HistoryProvider {
         Reader reader = listReaders.get(readerNum-1);
         history.setBook(book);
         history.setReader(reader);
-        history.setTakeOn(new Date());
+        history.setTakeOn(new Date());//segodnjawnjaja data new Date()
         return history;
     }
     public void returnBook(List<History> listHistories){
@@ -57,14 +57,15 @@ public class HistoryProvider {
         System.out.println("Список читаемых книг");
         int i=1;
         for(History history : listHistories){
-            if(history.getReturnDate() == null){
-                System.out.printf("%d. Читатлель %s %s читает книгу %s%n"
+            if(history.getReturnDate() == null){//kniga 4itaetsja, esli getReturnDate=null
+                System.out.printf("%d. Читатель %s %s читает книгу %s%n"
                     ,i
                     ,history.getReader().getName()
                     ,history.getReader().getLastname()
                     ,history.getBook().getTitle()
                 );
             }
+            i++;
         }
         System.out.println("Выберите возвращаемую книгу: ");
         int numHistory = scanner.nextInt();

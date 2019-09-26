@@ -18,16 +18,22 @@ import java.util.Scanner;
  * @author user
  */
 public class App {
-
+    List<Book> listBooks = new ArrayList<>();//list - sozdajom instrument listBooks
+List<Reader> listReaders = new ArrayList<>();
     public App() {
+        
+        SaveToFile saveToFile = new SaveToFile();
+        listBooks = saveToFile.loadBooks();
+        listReaders = saveToFile.loadReaders();
     }
     
     public void run(){
-        Scanner scanner = new Scanner(System.in);
-        List<Book> listBooks = new ArrayList<>();
-        List<Reader> listReaders = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);// polu4aem dannqe s klaviaturq System.in
+        
+        
         List<History> listHistories = new ArrayList<>();
         HistoryProvider historyProvider = new HistoryProvider();
+        SaveToFile saveToFile = new SaveToFile();
         boolean flagExit = true;
         do{
             System.out.println("Список задач:");
@@ -50,7 +56,9 @@ public class App {
                     System.out.println("Новая книга.");
                     BookProvider bookProvider = new BookProvider();
                     Book book = bookProvider.createBook();
-                    listBooks.add(book);
+                    listBooks.add(book);// dobavlenie knigi v massiv listBooks pod nomerom 0,1,2... i t.d.
+                    
+                    saveToFile.saveBooks(listBooks);
                     for(Book b : listBooks){
                        System.out.println(b.toString()); 
                     }
@@ -60,21 +68,24 @@ public class App {
                     ReaderProvider readerProvider = new ReaderProvider();
                     Reader reader = readerProvider.createReader();
                     listReaders.add(reader);
+                    
+                    saveToFile.saveReaders(listReaders);
                     for(Reader r : listReaders){
                        System.out.println(r.toString()); 
                     }
                     break;
                 case "3":
                     System.out.println("Список книг библиотеки:");
-                    int i = 1;
+                    int i = 1;//indeks, 4tobq pronumirovat stro4ki
                     for(Book b : listBooks){
                         System.out.println(i+". "+b.toString());
+                                
                         i++;
                     }
                     break;
                 case "4":
                     System.out.println("Список читателей библиотеки:");
-                    for(int j=0;j<listReaders.size();j++){
+                    for(int j=0;j<listReaders.size();j++){//poka j< 4em koli4estvo 4itatelej
                         System.out.println(j+1+". "+listReaders.get(j).toString());
                     }
                     break;

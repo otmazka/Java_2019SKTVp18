@@ -13,17 +13,17 @@ import java.util.Scanner;
  * @author User
  */
 public class BookProvider {
-   public Book createBook(){
+   public Book createBook(){//vozvrawaemqi metod
        Scanner scanner = new Scanner(System.in);
        Book book = new Book();
        System.out.println("Nazvanie knigi:");
-       book.setTitle(scanner.nextLine());
+       book.setTitle(scanner.nextLine());//vvodit stroku s klaviaturq, pomestit v pole book
        System.out.println("Avtor knigi:");
              book.setAuthor(scanner.nextLine());
              System.out.println("God izdanija knigi:");
        
        book.setYear(new Integer(scanner.nextLine()));
-       return book;
+       return book;//vozvrawaem
        
    }
 }
