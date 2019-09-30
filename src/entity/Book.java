@@ -5,17 +5,34 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author User
  */
-public class Book {
+public class Book implements Serializable{
    private String title;
     private String author;
     private int year;
+private int quantity;
+private int count;
+
+    public Book(String title, String author, int year, int quantity, int count) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.quantity = quantity;
+        this.count = quantity;
+    }
 
     public Book() {
-        
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + ", quantity=" + quantity + ", count=" + quantity + '}';
     }
 
     public void setTitle(String title) {
@@ -30,9 +47,12 @@ public class Book {
         this.year = year;
     }
 
-    @Override
-    public String toString() {
-        return "Book{" + "title=" + title + ", author=" + author + ", year=" + year + '}';
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
     }
 
     public String getTitle() {
@@ -46,5 +66,13 @@ public class Book {
     public int getYear() {
         return year;
     }
-    
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
 }
