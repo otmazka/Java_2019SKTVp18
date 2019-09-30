@@ -1,11 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package classes;
 
 import entity.Book;
+import entity.History;
 import entity.Reader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,7 +20,8 @@ import java.util.logging.Logger;
  * @author user
  */
 public class SaveToFile {
-    public void saveBooks(List<Book> listBooks){
+
+    public void saveBooks(List<Book> listBooks) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -35,15 +33,15 @@ public class SaveToFile {
             System.out.println("Ошибка: на диске нет файла Books.txt");
         } catch (IOException ex) {
             System.out.println("Ошибка: записать в файл не удалось");
-        } finally{
-            if(objectOutputStream != null){
+        } finally {
+            if (objectOutputStream != null) {
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE,"Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
-            if(fileOutputStream != null){
+            if (fileOutputStream != null) {
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
@@ -52,7 +50,8 @@ public class SaveToFile {
             }
         }
     }
-    public List<Book> loadBooks(){
+
+    public List<Book> loadBooks() {
         List<Book> listBooks = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -66,15 +65,15 @@ public class SaveToFile {
             System.out.println("Ошибка: чтение файла Books.txt не удолось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Book");
-        }finally{
-            if(objectInputStream != null){
+        } finally {
+            if (objectInputStream != null) {
                 try {
                     objectInputStream.close();
                 } catch (IOException ex) {
                     Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if(fileInputStream != null){
+            if (fileInputStream != null) {
                 try {
                     fileInputStream.close();
                 } catch (IOException ex) {
@@ -83,8 +82,9 @@ public class SaveToFile {
             }
         }
         return listBooks;
-    }   
-    public void saveReaders(List<Reader> listReaders){
+    }
+
+    public void saveReaders(List<Reader> listReaders) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -96,15 +96,15 @@ public class SaveToFile {
             System.out.println("Ошибка: на диске нет файла Reader.txt");
         } catch (IOException ex) {
             System.out.println("Ошибка: записать в файл не удалось");
-        } finally{
-            if(objectOutputStream != null){
+        } finally {
+            if (objectOutputStream != null) {
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE,"Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
                 }
             }
-            if(fileOutputStream != null){
+            if (fileOutputStream != null) {
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
@@ -113,7 +113,8 @@ public class SaveToFile {
             }
         }
     }
-    public List<Reader> loadReaders(){
+
+    public List<Reader> loadReaders() {
         List<Reader> listReaders = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -127,6 +128,68 @@ public class SaveToFile {
             System.out.println("Ошибка: чтение файла Reader.txt не удолось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Reader");
+        } finally {
+            if (objectInputStream != null) {
+                try {
+                    objectInputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (fileInputStream != null) {
+                try {
+                    fileInputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return listReaders;
+    }
+  public void saveHistories(List<History> listHistories){
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream objectOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream("Histories.txt");
+            objectOutputStream = new ObjectOutputStream(fileOutputStream);
+            objectOutputStream.writeObject(listHistories);
+            objectOutputStream.flush();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Ошибка: на диске нет файла Histories.txt");
+        } catch (IOException ex) {
+            System.out.println("Ошибка: записать в файл не удалось");
+        } finally{
+            if(objectOutputStream != null){
+                try {
+                    objectOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
+                }
+            }
+            if(fileOutputStream != null){
+                try {
+                    fileOutputStream.close();
+                } catch (IOException ex) {
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
+                }
+            }
+        }
+    }
+
+    public List<History> loadHistories(){
+        List<History> listHistories = new ArrayList<>();
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
+        try {
+            fileInputStream = new FileInputStream("Histories.txt");
+            objectInputStream = new ObjectInputStream(fileInputStream);
+            listHistories = (List<History>) objectInputStream.readObject();
+        } catch (FileNotFoundException ex) {
+            System.out.println("Ошибка: не найден файл Histories.txt");
+        } catch (IOException ex) {
+            System.out.println("Ошибка: чтение файла Histories.txt не удолось");
+        } catch (ClassNotFoundException ex) {
+            System.out.println("Ошибка: нет класса History");
         }finally{
             if(objectInputStream != null){
                 try {
@@ -143,8 +206,10 @@ public class SaveToFile {
                 }
             }
         }
-        return listReaders;
+        return listHistories;
     }   
-
     
 }
+    
+
+
