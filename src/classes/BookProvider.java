@@ -10,21 +10,20 @@ import java.util.Scanner;
 
 /**
  *
- * @author User
+ * @author user
  */
 public class BookProvider {
-   public Book createBook(){//vozvrawaemqi metod
-       Scanner scanner = new Scanner(System.in);
-       Book book = new Book();
-       System.out.println("Nazvanie knigi:");
-       book.setTitle(scanner.nextLine());//vvodit stroku s klaviaturq, pomestit v pole book
-       System.out.println("Avtor knigi:");
-             book.setAuthor(scanner.nextLine());
-             System.out.println("God izdanija knigi:");
-       book.setYear(new Integer(scanner.nextLine()));
-             System.out.println("Kolli4estvo ekzempljarov:");
-       book.setQuantity(Integer.parseInt(scanner.nextLine()));
-       return book;//vozvrawaem
-       
-   }
+    public Book createBook(){
+        Scanner scanner = new Scanner(System.in);
+        Book book = new Book();
+        System.out.println("Название книги: ");
+        book.setTitle(scanner.nextLine());
+        System.out.println("Автор книги: ");
+        book.setAuthor(scanner.nextLine());
+        System.out.println("Год издания книги: ");
+        book.setYear(new Integer(scanner.nextLine()));
+        System.out.println("Количество экземпляров: ");
+        book.setQuantity(Integer.parseInt(scanner.nextLine()));
+        return book;
+    }
 }

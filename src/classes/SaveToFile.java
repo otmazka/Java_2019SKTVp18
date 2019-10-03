@@ -20,8 +20,8 @@ import java.util.logging.Logger;
  * @author user
  */
 public class SaveToFile {
-
-    public void saveBooks(List<Book> listBooks) {
+    
+    public void saveBooks(List<Book> listBooks){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -33,25 +33,24 @@ public class SaveToFile {
             System.out.println("Ошибка: на диске нет файла Books.txt");
         } catch (IOException ex) {
             System.out.println("Ошибка: записать в файл не удалось");
-        } finally {
-            if (objectOutputStream != null) {
+        } finally{
+            if(objectOutputStream != null){
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
                 }
             }
-            if (fileOutputStream != null) {
+            if(fileOutputStream != null){
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
                 }
             }
         }
     }
-
-    public List<Book> loadBooks() {
+    public List<Book> loadBooks(){
         List<Book> listBooks = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -65,15 +64,15 @@ public class SaveToFile {
             System.out.println("Ошибка: чтение файла Books.txt не удолось");
         } catch (ClassNotFoundException ex) {
             System.out.println("Ошибка: нет класса Book");
-        } finally {
-            if (objectInputStream != null) {
+        }finally{
+            if(objectInputStream != null){
                 try {
                     objectInputStream.close();
                 } catch (IOException ex) {
                     Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (fileInputStream != null) {
+            if(fileInputStream != null){
                 try {
                     fileInputStream.close();
                 } catch (IOException ex) {
@@ -82,61 +81,59 @@ public class SaveToFile {
             }
         }
         return listBooks;
-    }
-
-    public void saveReaders(List<Reader> listReaders) {
+    }   
+    public void saveReaders(List<Reader> listReaders){
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
-            fileOutputStream = new FileOutputStream("Reader.txt");
+            fileOutputStream = new FileOutputStream("Readers.txt");
             objectOutputStream = new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(listReaders);
             objectOutputStream.flush();
         } catch (FileNotFoundException ex) {
-            System.out.println("Ошибка: на диске нет файла Reader.txt");
+            System.out.println("Ошибка: на диске нет файла Books.txt");
         } catch (IOException ex) {
             System.out.println("Ошибка: записать в файл не удалось");
-        } finally {
-            if (objectOutputStream != null) {
+        } finally{
+            if(objectOutputStream != null){
                 try {
                     objectOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса", ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса oos", ex);
                 }
             }
-            if (fileOutputStream != null) {
+            if(fileOutputStream != null){
                 try {
                     fileOutputStream.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, "Ошибка освобождения ресурса fos", ex);
                 }
             }
         }
     }
-
-    public List<Reader> loadReaders() {
+    public List<Reader> loadReaders(){
         List<Reader> listReaders = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
         try {
-            fileInputStream = new FileInputStream("Reader.txt");
+            fileInputStream = new FileInputStream("Readers.txt");
             objectInputStream = new ObjectInputStream(fileInputStream);
             listReaders = (List<Reader>) objectInputStream.readObject();
         } catch (FileNotFoundException ex) {
-            System.out.println("Ошибка: не найден файл Reader.txt");
+            System.out.println("Ошибка: не найден файл Readers.txt");
         } catch (IOException ex) {
-            System.out.println("Ошибка: чтение файла Reader.txt не удолось");
+            System.out.println("Ошибка: чтение файла Readers.txt не удолось");
         } catch (ClassNotFoundException ex) {
-            System.out.println("Ошибка: нет класса Reader");
-        } finally {
-            if (objectInputStream != null) {
+            System.out.println("Ошибка: нет класса Readers");
+        }finally{
+            if(objectInputStream != null){
                 try {
                     objectInputStream.close();
                 } catch (IOException ex) {
                     Logger.getLogger(SaveToFile.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            if (fileInputStream != null) {
+            if(fileInputStream != null){
                 try {
                     fileInputStream.close();
                 } catch (IOException ex) {
@@ -145,8 +142,9 @@ public class SaveToFile {
             }
         }
         return listReaders;
-    }
-  public void saveHistories(List<History> listHistories){
+    }   
+
+    void saveHistories(List<History> listHistories) {
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream objectOutputStream = null;
         try {
@@ -176,7 +174,7 @@ public class SaveToFile {
         }
     }
 
-    public List<History> loadHistories(){
+    List<History> loadHistories() {
         List<History> listHistories = new ArrayList<>();
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
@@ -207,9 +205,8 @@ public class SaveToFile {
             }
         }
         return listHistories;
-    }   
-    
-}
-    
+    }
 
+   
+}
 
