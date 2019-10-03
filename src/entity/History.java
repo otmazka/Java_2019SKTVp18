@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author user
  */
-public class History  implements Serializable{
+public class History implements Serializable{
     private Book book;
     private Reader reader;
     private Date takeOn;
@@ -57,7 +57,5 @@ public class History  implements Serializable{
     public String toString() {
         return "History{" + "book=" + book + ", reader=" + reader + ", takeOn=" + takeOn + ", returnDate=" + returnDate + '}';
     }
-
-    
     
 }
