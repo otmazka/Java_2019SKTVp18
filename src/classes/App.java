@@ -22,17 +22,17 @@ public class App {
     List<Reader> listReaders = new ArrayList<>();
     List<History> listHistories = new ArrayList<>();
     public App() {
-        SaveToFile saveToFile = new SaveToFile();
-        listBooks = saveToFile.loadBooks();
-        listReaders = saveToFile.loadReaders();
-        listHistories = saveToFile.loadHistories();
+        SaveToBase saveToBase = new SaveToBase();
+        listBooks = saveToBase.loadBooks();
+        listReaders = saveToBase.loadReaders();
+        listHistories = saveToBase.loadHistories();
     }
     
     public void run(){
         Scanner scanner = new Scanner(System.in);
         
         HistoryProvider historyProvider = new HistoryProvider();
-        SaveToFile saveToFile = new SaveToFile();                    
+        SaveToBase saveToBase = new SaveToBase();                    
         boolean flagExit = true;
         do{
             System.out.println("Список задач:");
@@ -57,7 +57,7 @@ public class App {
                     BookProvider bookProvider = new BookProvider();
                     Book book = bookProvider.createBook();
                     listBooks.add(book);
-                    saveToFile.saveBooks(listBooks);
+                    saveToBase.saveBooks(listBooks);
                     for(Book b : listBooks){
                        System.out.println(b.toString()); 
                     }
@@ -67,7 +67,7 @@ public class App {
                     ReaderProvider readerProvider = new ReaderProvider();
                     Reader reader = readerProvider.createReader();
                     listReaders.add(reader);
-                    saveToFile.saveReaders(listReaders);
+                    saveToBase.saveReaders(listReaders);
                     for(Reader r : listReaders){
                        System.out.println(r.toString()); 
                     }
@@ -90,18 +90,13 @@ public class App {
                     System.out.println("Выдаем книгу читателю");
                     
                     History history = historyProvider.createHistory(listBooks, listReaders);
-                    if(history != null){
-                        listHistories.add(history);
-                        saveToFile.saveHistories(listHistories); 
-                    }else{
-                        
-                    }
-                       
+                    listHistories.add(history);
+                    saveToBase.saveHistories(listHistories);
                     break;
                 case "6":
                     System.out.println("Возвращение книги");
                     historyProvider.returnBook(listHistories);
-                    saveToFile.saveHistories(listHistories);
+                    saveToBase.saveHistories(listHistories);
                     break;
                 case "7":
                     System.out.println("Список выданных книг");
@@ -121,7 +116,6 @@ public class App {
         }while(flagExit);
     }
 }
-
 //        System.out.println("Привет!");
 //        Book book = new Book();
 //        book.setTitle("Voina i mir");
