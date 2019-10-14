@@ -20,7 +20,7 @@ import javax.persistence.Id;
 public class Book implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;  
+    private Long id;  
     private String title;
     private String author;
     private int year;
@@ -72,11 +72,11 @@ public class Book implements Serializable{
         
     }
     public Long getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     @Override
